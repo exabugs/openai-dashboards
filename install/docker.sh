@@ -27,3 +27,13 @@ echo \
 sudo apt-get update
 sudo NEEDRESTART_MODE=a apt-get install -y \
   docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+
+# 永続化
+mkdir -p /mnt/data/docker
+if [ ! -L /var/lib/docker ]; then
+  systemctl stop docker
+  rsync -a /var/lib/docker/ /mnt/data/docker/
+  rm -rf /var/lib/docker
+  ln -s /mnt/data/docker /var/lib/docker
+  systemctl start docker
+fi
