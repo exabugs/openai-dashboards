@@ -1,0 +1,13 @@
+[Unit]
+Description=Download Grafana/Prometheus configuration files from GitHub
+After=network.target
+
+[Service]
+Type=oneshot
+RemainAfterExit=true
+EnvironmentFile=/etc/environment
+
+ExecStart=bash -c "curl -fsSL $SERVER_SETUP_SITE/scripts/download_configs.sh | bash"
+
+[Install]
+WantedBy=multi-user.target

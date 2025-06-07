@@ -1,0 +1,16 @@
+[Unit]
+Description=Attach and resize block device
+After=network.target
+
+Wants=download_configs.service
+After=download_configs.service
+
+[Service]
+Type=oneshot
+RemainAfterExit=true
+EnvironmentFile=/etc/environment
+
+ExecStart=/opt/setup/block_device.sh
+
+[Install]
+WantedBy=multi-user.target
