@@ -1,0 +1,36 @@
+[Unit]
+Description=OpenAI via Docker Compose
+
+# Docker が必要
+Wants=docker.service
+After=docker.service
+
+# ストレージボリュームが必要
+Wants=block_device.service
+After=block_device.service
+
+# Nginx（リバースプロキシ）が必要
+Wants=nginx.service
+After=nginx.service
+
+# 証明書が取得済みである必要がある
+Wants=letsencrypt_config.service
+After=letsencrypt_config.service
+
+Wants=download_configs.service
+After=download_configs.service
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+EnvironmentFile=/etc/environment
+
+ExecStart=/opt/setup/openai.sh start
+ExecStop=/opt/setup/openai.sh stop
+ExecReload=/opt/setup/openai.sh restart
+
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target

@@ -1,5 +1,5 @@
 [Unit]
-Description=Download Grafana/Prometheus configuration files from GitHub
+Description=Download OpenAI configuration files from GitHub
 After=network.target
 
 [Service]

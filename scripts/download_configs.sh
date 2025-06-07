@@ -1,22 +1,12 @@
 #!/bin/bash
 set -e
 
-# Doctor
-curl -fsSL $SERVER_SETUP_SITE/install/docter.sh -o /root/docter.sh
-chmod +x /root/docter.sh
+# # Doctor
+# curl -fsSL $SERVER_SETUP_SITE/install/docter.sh -o /root/docter.sh
+# chmod +x /root/docter.sh
 
 # Apps
 apps=(
-  prometheus/prometheus.yml
-  mimir/mimir.yml
-  alloy/config.alloy
-  loki/loki.yml
-  tempo/config.yml
-  pyroscope/config.yml
-
-  grafana/provisioning/dashboards/default.yml
-  grafana/provisioning/dashboards/node-exporter.json
-  grafana/provisioning/datasources/mimir.yml
 )
 for app in "${apps[@]}"; do
   filepath=/etc/$app
@@ -32,8 +22,7 @@ curl -fsSL $SERVER_SETUP_SITE/compose/docker-compose.yml -o /opt/compose/docker-
 mkdir -p /etc/nginx/sites-available
 available=(
   default
-  grafana
-  mimir
+  openai
 )
 for site in "${available[@]}"; do
   path=/etc/nginx/sites-available/$site
@@ -46,8 +35,7 @@ mkdir -p /opt/setup
 services=(
   block_device
   letsencrypt_config
-  grafana
-  mimir
+  openai
 )
 for service in "${services[@]}"; do
   path=/opt/setup/$service.sh

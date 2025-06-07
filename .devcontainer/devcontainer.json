@@ -19,8 +19,6 @@
     "vscode": {
       "extensions": [
         "esbenp.prettier-vscode", //
-        "grafana.grafana-vscode",
-        "grafana.grafana-alloy",
         // "aidan-gibson.river",
         // "k6.k6",
         "hashicorp.terraform"

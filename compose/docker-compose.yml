@@ -1,12 +1,12 @@
 services:
-  # grafana:
+  # openai:
   #   init: true
-  #   image: grafana/grafana
-  #   container_name: grafana
+  #   image: openai/openai
+  #   container_name: openai
   #   network_mode: host
   #   ports:
   #     - 3000:3000
   #   volumes:
-  #     - /mnt/data/grafana:/var/lib/grafana
-  #     - /etc/grafana/provisioning:/etc/grafana/provisioning
+  #     - /mnt/data/openai:/var/lib/openai
+  #     - /etc/openai/provisioning:/etc/openai/provisioning
   #   restart: always
